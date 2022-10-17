@@ -16,8 +16,8 @@ Open Portal Directa
     #Acessa Notas Natalense Download NFS-e
     #Seleciona Empresa
     Acessa Notas Natalense Consultas NFS-e
-*** Keywords ***
 
+*** Keywords ***
 Open Portal Directa
     Open Available Browser    ${URL_PORTAL_DIRECTA}    maximized=True    alias=FirstBrowser
 
@@ -33,15 +33,17 @@ Acessa Notas Natalense Download NFS-e
     Sleep    0.5
     Click Element When Visible    //li[@id='limenu9']
     Sleep    0.5
-    Click Element When Visible    //a[@value='formsmenu12']
+    Click Element When Visible    //a[@value='formsmenu14']
     Sleep    0.5
-    Click Element When Visible    //li[@onclick="itemSelecionado(this,800,541,'Nota Natalense - Consultas - Consulta NFS-e',50)"] 
-    Unselect Frame    
+    Click Element When Visible    //li[@onclick="itemSelecionado(this,578,489,'Nota Natalense - Operações - Download de NFS-e',112)"] 
+    #Unselect Frame
+
 Seleciona Empresa
-    #Select Frame    //frame[@name='mainform']
-    #Click Element When Visible    //*[@id='close_form1']
-    Sleep    15
+    Sleep    5
+    Select Frame    //*[@id="iframe2"]
+    Click Element When Visible    css:#lay > div:nth-child(3) > div.tabArea > div:nth-child(10) > div:nth-child(2) > div > div > table > tbody > tr > td
     #Click Button    //div[@id='lay']/div[2]/div[2]/div[10]/div[2]/div/div/table/tbody/tr/td
+    Sleep    15
 
 Acessa Notas Natalense Consultas NFS-e
     Select Frame    //frame[@name='mainsystem']
