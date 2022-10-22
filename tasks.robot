@@ -3,6 +3,7 @@ Documentation       Template robot main suite.
 
 Library    RPA.Browser.Selenium
 Library    RPA.FileSystem
+Library    RPA.Windows
 
 *** Variables ***
 
@@ -14,9 +15,12 @@ ${PASSWORD_PORTAL_DIRECTA}    %{PASSWORD}
 Open Portal Directa
     Open Portal Directa
     Login Portal Directa
-    Acessa Notas Natalense Download NFS-e
-    Download NFS-e
+    #Acessa Notas Natalense Download NFS-e
+    #Download NFS-e
     Acessa Notas Natalense Consultas NFS-e
+    Download Consulta NFS-e Files
+    Sleep    60
+
 
 *** Keywords ***
 Open Portal Directa
@@ -36,8 +40,7 @@ Acessa Notas Natalense Download NFS-e
     Sleep    0.5
     Click Element When Visible    //a[@value='formsmenu14']
     Sleep    0.5
-    Click Element When Visible    //li[@onclick="itemSelecionado(this,578,489,'Nota Natalense - Operações - Download de NFS-e',112)"] 
-    #Unselect Frame
+    Click Element When Visible    //li[@onclick="itemSelecionado(this,578,489,'Nota Natalense - Operações - Download de NFS-e',112)"]
 
 Download NFS-e
     Sleep    5
@@ -79,3 +82,47 @@ Acessa Notas Natalense Consultas NFS-e
         Click Element When Visible    //a[@value='formsmenu12'] 
         Click Element When Visible    //li[@onclick="itemSelecionado(this,800,541,'Nota Natalense - Consultas - Consulta NFS-e',50)"] 
     END
+
+Download Consulta NFS-e Files 
+    Sleep    5
+    Select Frame    //*[@id="iframe0"]
+    Select Frame    //frame[@name='mainform']
+    Execute Javascript   document.querySelector('#lay > div:nth-child(3) > div:nth-child(2) > div:nth-child(7) > div:nth-child(2) > div > div > table > tbody > tr > td').click()
+    Sleep    0.5  
+    Click Element When Visible    //*[@id="lookupInput"]/option[6]
+    Sleep    0.5  
+    Click Element When Visible    //*[@id="HTMLGroupBox628126"]/table/tbody/tr[2]/td/table/tbody/tr/td[1]/a/img
+    Sleep    0.5 
+    Execute Javascript    document.querySelector('#lay > div:nth-child(3) > div:nth-child(2) > div:nth-child(14) > div:nth-child(2) > div > div > table > tbody > tr > td').click() 
+    Sleep    0.5  
+    Click Element When Visible    //*[@id="lookupInput"]/option[1]
+    Sleep    0.5  
+    Input Text    //input[@name="WFRInput628128"]    01/07/2022
+    Sleep    0.5  
+    Input Text    //input[@name="WFRInput628127"]    31/07/2022
+    Sleep    0.5
+    Click Element When Visible    //*[@id="lay"]/div[2]/div[2]/div[21]/div/table/tbody/tr/td  
+    Sleep    0.5
+    Click Element When Visible    //*[@id="lay"]/div[2]/div[3]/div[5]/div/table/tbody/tr/td
+    Sleep    20
+    #Falta Desenvolver a rotina para salvar o PDF gerado.
+    Execute Javascript    document.querySelector('#lay > div:nth-child(3) > div:nth-child(3) > div:nth-child(7) > div > table > tbody > tr > td').click()
+    #Click Element When Visible    //*[@id="lay"]/div[2]/div[3]/div[7]/div/table/tbody/tr/td
+    Sleep    0.5
+    Click Element When Visible    //*[@id="HTMLGroupBox628126"]/table/tbody/tr[3]/td/table/tbody/tr/td[1]/a/img
+    Sleep    0.5
+    Click Element When Visible    //*[@id="HTMLGroupBox628123"]/table/tbody/tr[1]/td/table/tbody/tr/td[1]/a/img
+    Sleep    0.5
+    Click Element When Visible    //*[@id="lay"]/div[2]/div[2]/div[21]/div/table/tbody/tr/td
+    Sleep    0.5
+    Click Element When Visible    //*[@id="lay"]/div[2]/div[3]/div[5]/div/table/tbody/tr/td
+    Sleep    0.5
+    #Falta Desenvolver a rotina para salvar o PDF gerado.
+    Unselect Frame
+    Select Frame    //frame[@name='mainsystem']
+    Sleep    0.5
+    Select Frame    //frame[@name='mainsystem']
+    Execute Javascript    document.getElementsByTagName('a')[158].click()
+    Close All Browsers
+    
+    
